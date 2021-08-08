@@ -118,9 +118,28 @@ int minStepsBetter(int n){
     return minStepsBetter(ans, n);
 }
 
+// Min steps uisng Dynamic Programming
+
+int minStepsDP(int n){
+    int *ans = new int[n + 1];
+    ans[1] = 0;
+    for (int i = 2; i <= n; i++){
+        ans[i] = 1 + ans[i - 1];
+        if(i % 3 == 0){
+            ans[i] = min(ans[i], 1 + ans[i / 3]);
+        }
+        if(i % 2 == 0){
+            ans[i] = min(ans[i], 1 + ans[i / 2]);
+        }
+    }
+    return ans[n];
+}
+
 int main(){
     int n;
     cin >> n;
+
+    cout << minStepsDP(n) << endl;
     cout << minStepsBetter(n) << endl;
 
     cout << minSteps(n) << endl;
