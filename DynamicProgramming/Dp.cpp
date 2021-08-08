@@ -42,9 +42,26 @@ int fibonacciNumber(int n){
     return fibonacciNumber(ans, n);
 }
 
+/*
+Solution using Dynamic Programming and the complexity 
+of this function is also order of n
+*/
+
+int fiboBetter(int n){
+    int *ans = new int[n + 1];
+    ans[0] = 1; //Trivial Solution
+    ans[1] = 1; //Trivial solution
+
+    for (int i = 2; i <= n; i++){
+        ans[i] = ans[i - 1] + ans[i - 2];
+    }
+    return ans[n];
+}
+
 int main(){
     int n;
     cin >> n;
+    cout << fiboBetter(n) << endl;
     cout << fibonacciNumber(n) << endl;
     cout << fibo(n) << endl;
 }
