@@ -81,9 +81,47 @@ int minSteps(int n){
     return ans + 1;
 }
 
+/*
+Using Memoization technique
+*/
+
+int minStepsBetter(int *ans, int n){
+    if(n <= 1){
+        ans[n] = 0;
+        return 0;
+    }
+     ans[n - 1] = minStepsBetter(ans, n - 1);
+    int y = INT_MAX;
+    int z = INT_MAX;
+    if(n%2 == 0){
+        if(ans[n/2] == -1){
+            ans[n / 2] = minStepsBetter(ans, n / 2);
+        }
+        y = ans[n / 2];
+    }
+    if(n % 3 == 0){
+        if(ans[n/3] == 0){
+            ans[n / 3] = minStepsBetter(ans, n / 3);
+        }
+        z = ans[n / 3];
+    }
+
+    ans[n] = min(ans[n - 1], min(y, z)) + 1;
+    return ans[n];
+}
+
+int minStepsBetter(int n){
+    int *ans = new int[n + 1];
+    for (int i = 0; i <= n; i++){
+        ans[i] = -1;
+    }
+    return minStepsBetter(ans, n);
+}
+
 int main(){
     int n;
     cin >> n;
+    cout << minStepsBetter(n) << endl;
 
     cout << minSteps(n) << endl;
     /*
