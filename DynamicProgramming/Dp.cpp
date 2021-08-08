@@ -1,4 +1,5 @@
 #include<iostream>
+#include<climits>
 using namespace std;
 
 // Complexity of this function is 2 power of n
@@ -58,10 +59,36 @@ int fiboBetter(int n){
     return ans[n];
 }
 
+/*
+Min Steps to reduce a number to 1 using given set of operations
+The complexity of this function is order 3 power n using Bruteforce solution
+*/
+
+int minSteps(int n){
+    if(n <= 1){
+        return 0;
+    }
+    int x = minSteps(n - 1);
+    int y = INT_MAX;
+    int z = INT_MAX;
+    if(n%3 == 0){
+        y = minSteps(n / 3);
+    }
+    if(n % 2 == 0){
+        z = minSteps(n / 2);
+    }
+    int ans = min(x, min(y, z));
+    return ans + 1;
+}
+
 int main(){
     int n;
     cin >> n;
+
+    cout << minSteps(n) << endl;
+    /*
     cout << fiboBetter(n) << endl;
     cout << fibonacciNumber(n) << endl;
     cout << fibo(n) << endl;
+*/
 }
