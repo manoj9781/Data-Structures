@@ -194,6 +194,41 @@ int minCostPathBetter(int **input, int m, int n){
     return minCostPathBetter(input, m, n, 0, 0, ans);
 }
 
+/*
+Min cost path using Dynamic Programming 
+The complexity of this function is order of m*n;
+*/
+
+int minCostPathDp(int **input, int m ,int n){
+    int **ans = new int *[m];
+    for (int i = 0; i < m; i++){
+        ans[i] = new int[n];
+    }
+
+    ans[m - 1][n - 1] = input[m - 1][n - 1];
+
+    // Last Row
+
+    for (int i = n - 2; i >= 0; i--){
+        ans[m - 1][i] = input[m - 1][i] + ans[m - 1][i + 1];
+    }
+
+    // Last Column
+
+    for (int i = m - 2; i >= 0; i--){
+        ans[i][n - 1] = input[i][n - 1] + ans[i + 1][n - 1];
+    }
+
+    // Fill the  Remaining Array
+
+    for (int i = m - 2; i >= 0; i--){
+        for (int j = n - 2; j >= 0; j--){
+            ans[i][j] = input[i][j] + min(ans[i][j + 1], min(ans[i + 1][j + 1], ans[i + 1][j]));
+        }
+    }
+    return ans[0][0];
+}
+
 int main(){
     int m, n;
     cin >> m >> n;
@@ -204,8 +239,9 @@ int main(){
             cin >> input[i][j];
         }
     }
-    cout << minCostPath(input, m, n) << endl;
-    cout << minCostPathBetter(input, m, n) << endl;
+    // cout <<"Dp " <<  minCostPathDp(input, m, n) << endl;
+    // cout <<"Recursion " << minCostPath(input, m, n) << endl;
+    cout <<"Memoization " << minCostPathBetter(input, m, n) << endl;
 
     /*
     cout << minStepsDP(n) << endl;
