@@ -155,6 +155,45 @@ int minCostPath(int **input, int m, int n){
     return minCostPath(input, m, n, 0, 0);
 }
 
+int minCostPathBetter(int **input, int m, int n , int i, int j, int **ans){
+    if(i == m-1 && j == n-1){
+        return input[i][j];
+    }
+    if(i >= m || j >= n){
+        return INT_MAX;
+    }
+    if(ans[i][j] != -1){
+        return ans[i][j];
+    }
+
+    int x = minCostPathBetter(input, m, n, i, j + 1, ans);
+    if(x < INT_MAX){
+        ans[i][j + 1] = x;
+    }
+
+    int y = minCostPathBetter(input, m, n, i + 1, j + 1, ans);
+    if(y < INT_MAX){
+        ans[i + 1][j + 1] = y;
+    }
+    int z = minCostPathBetter(input, m, n, i + 1, j, ans);
+    if(z < INT_MAX){
+        ans[i + 1][j] = z;
+    }
+    ans[i][j] = min(x, min(y, z)) + input[i][j];
+    return ans[i][j];
+}
+
+int minCostPathBetter(int **input, int m, int n){
+    int **ans = new int *[m];
+    for (int i = 0; i < m; i++){
+        ans[i] = new int[n];
+        for (int j = 0; i < n; j++){
+            ans[i][j] = -1;
+        }
+    }
+    return minCostPathBetter(input, m, n, 0, 0, ans);
+}
+
 int main(){
     int m, n;
     cin >> m >> n;
@@ -166,6 +205,7 @@ int main(){
         }
     }
     cout << minCostPath(input, m, n) << endl;
+    cout << minCostPathBetter(input, m, n) << endl;
 
     /*
     cout << minStepsDP(n) << endl;
