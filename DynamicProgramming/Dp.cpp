@@ -253,10 +253,46 @@ int lcs(string s, string t){
     }
 }
 
+int lcs_Better(string s, string t, int ** ans){
+    if(s.size() == 0 || t.size() == 0){
+        return 0;
+    }
+    int m = s.size();
+    int n = t.size();
+    
+    if(ans[m][n] != -1){
+        return ans[m][n];
+    }
+    if(s[0] == t[0]){
+        ans[m - 1][n - 1] = lcs_Better(s.substr(1), t.substr(1), ans);
+        ans[m][n] = 1 + ans[m - 1][n - 1];
+    }
+    else{
+        ans[m][n - 1] = lcs_Better(s, t.substr(1), ans);
+        ans[m - 1][n] = lcs_Better(s.substr(1), t, ans);
+        ans[m][n] = max(ans[m][n - 1], ans[m - 1][n]);
+    }
+    return ans[m][n];
+}
+
+int lcs_Better(string s, string t){
+    int m = s.size();
+    int n = t.size();
+    int **ans = new int *[m + 1];
+    for (int i = 0; i <= m; i++){
+        ans[i] = new int[n + 1];
+        for (int j = 0; j <= n; j++){
+            ans[i][j] = -1;
+        }
+    }
+    return lcs_Better(s, t, ans);
+}
+
 int main(){
 
     string s, t;
     cin >> s >> t;
+    cout << lcs_Better(s, t) << endl;
     cout << lcs(s, t) << endl;
 
     /*
