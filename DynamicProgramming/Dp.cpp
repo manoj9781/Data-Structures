@@ -444,13 +444,46 @@ int editDistanceBetter(string s, string t){
     return editDistanceBetter(s, t, ans);
 }
 
+int editDistanceDp(string s, string t){
+    int m = s.size();
+    int n = t.size();
+    int **ans = new int *[m + 1];
+    for (int i = 0; i <= m; i++){
+        ans[i] = new int[n + 1];
+    }
+
+    //First column
+    for (int j = 0; j <= n; j++){
+        ans[0][j] = j;
+    }
+    
+    //First Row
+    for (int i = 0; i <= n; i++){
+        ans[i][0] = i;
+    }
+    
+    //Remaining Array
+
+    for (int i = 1; i <= m; i++){
+        for (int j = 1; j <= n; j++){
+            if(s[m-i] == t[n-j]){
+                ans[i][j] = ans[i - 1][j - 1];
+            }else{
+                ans[i][j] = min(ans[i][j - 1], min(ans[i - 1][j - 1], ans[i - 1][j])) + 1;
+            }
+        }
+    }
+    return ans[m][n];
+}
+
 int main()
 {
 
     string s, t;
     cin >> s >> t;
+    cout << "DP " << editDistanceDp(s, t) << endl;
     cout << "Better " << editDistanceBetter(s, t) << endl;
-    cout << "Rec" << editDistance(s, t) << endl;
+    cout << "Rec " << editDistance(s, t) << endl;
 
     // cout <<" DP "<< lcsDp(s, t) << endl;
     // cout << "Memo " << lcs_Better(s, t) << endl;
