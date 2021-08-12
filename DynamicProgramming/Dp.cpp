@@ -288,12 +288,43 @@ int lcs_Better(string s, string t){
     return lcs_Better(s, t, ans);
 }
 
+int lcsDp(string s, string t){
+    int m = s.size();
+    int n = t.size();
+    int **ans = new int*[m + 1];
+    for (int i = 0; i <= m; i++){
+        ans[i] = new int[n + 1];
+    }
+
+    // first Row
+
+    for (int j = 0; j <= n; j++){
+        ans[0][j] = 0;
+    }
+    for (int i = 0; i <= m; i++){
+        ans[i][0] = 0;
+    }
+
+    for (int i = 1; i <= m; i++){
+        for (int j = 1; j <= n; j++){
+            if(s[m-i] == t[n-j]){
+                ans[i][j] = 1 + ans[i - 1][j - 1];
+            }
+            else{
+                ans[i][j] = max(ans[i - 1][j], ans[i][j - 1]);
+            }
+        }
+    }
+    return ans[m][n];
+}
+
 int main(){
 
     string s, t;
     cin >> s >> t;
-    cout << lcs_Better(s, t) << endl;
-    cout << lcs(s, t) << endl;
+    cout <<" DP "<< lcsDp(s, t) << endl;
+    cout << "Memo " << lcs_Better(s, t) << endl;
+    cout << "Rec " << lcs(s, t) << endl;
 
     /*
     int m, n;
