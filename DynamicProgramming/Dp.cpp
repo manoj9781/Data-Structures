@@ -318,13 +318,37 @@ int lcsDp(string s, string t){
     return ans[m][n];
 }
 
+int editDistance(string s, string t){
+    if(s.size() == 0 || t.size() == 0){
+        return max(s.size(), t.size());
+    }
+
+    // If first character is matched
+    
+    if(s[0] == t[0]){
+        return editDistance(s.substr(1), t.substr(1));
+    }
+    else{
+        // Insert
+        int x = editDistance(s, t.substr(1)) + 1;
+        //Delete
+        int y = editDistance(s.substr(1), t) + 1;
+        // Update
+        int z = editDistance(s.substr(1), t.substr(1)) + 1;
+        return min(x, min(y, z));
+    }
+}
+
 int main(){
 
     string s, t;
     cin >> s >> t;
-    cout <<" DP "<< lcsDp(s, t) << endl;
-    cout << "Memo " << lcs_Better(s, t) << endl;
-    cout << "Rec " << lcs(s, t) << endl;
+
+    cout << editDistance(s, t) << endl;
+
+    // cout <<" DP "<< lcsDp(s, t) << endl;
+    // cout << "Memo " << lcs_Better(s, t) << endl;
+    // cout << "Rec " << lcs(s, t) << endl;
 
     /*
     int m, n;
