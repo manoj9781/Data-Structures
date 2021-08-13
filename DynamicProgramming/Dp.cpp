@@ -476,15 +476,32 @@ int editDistanceDp(string s, string t){
     return ans[m][n];
 }
 
+int knapsack(int *weight, int *values, int n, int maxWeight){
+    if(n ==0 || maxWeight == 0){
+        return 0;
+    }
+    if(weight[0] > maxWeight){
+        return knapsack(weight + 1, values + 1, n - 1, maxWeight);
+    }
+
+    int x = knapsack(weight + 1, values + 1, n - 1, maxWeight - weight[0]) + values[0];
+    int y = knapsack(weight + 1, values + 1, n - 1, maxWeight);
+
+    return max(x, y);
+}
+
 int main()
 {
 
+
+    
+/*
     string s, t;
     cin >> s >> t;
     cout << "DP " << editDistanceDp(s, t) << endl;
     cout << "Better " << editDistanceBetter(s, t) << endl;
     cout << "Rec " << editDistance(s, t) << endl;
-
+*/
     // cout <<" DP "<< lcsDp(s, t) << endl;
     // cout << "Memo " << lcs_Better(s, t) << endl;
     // cout << "Rec " << lcs(s, t) << endl;
