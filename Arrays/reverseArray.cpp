@@ -12,6 +12,16 @@ void arrayReverse(int a[], int n){
         j--;
     }
 }
+
+void swapAlternative(int input[], int n){
+    for (int i = 0; i < n; i+=2){
+        if(i+1 < n){
+            int temp = input[i];
+            input[i] = input[i + 1];
+            input[i + 1] = temp;
+        }
+    }
+}
 int main(){
     int n;
     cout << "Enter number of Elements" << endl;
@@ -22,7 +32,8 @@ int main(){
         cin >> input[i];
     }
     cout << "Array After reverse" << endl;
-    arrayReverse(input, n);
+    // arrayReverse(input, n);
+    swapAlternative(input, n);
     for (int i = 0; i < n; i++){
         cout << input[i] << " ";
     }
