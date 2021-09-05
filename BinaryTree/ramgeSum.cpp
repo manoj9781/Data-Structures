@@ -35,3 +35,18 @@ public:
         return sum;
     }
 };
+
+int RangeSumBST(TreeNode *root, int low, int high){
+    if(root == NULL){
+        return 0;
+    }
+    int ans = 0;
+    if(root -> data >= low && root -> data <= high){
+        ans += root->data;
+    }
+    ans += RangeSumBST(root->left, low, high);
+    ans += RangeSumBST(root->right, low, high);
+    root->left = NULL;
+    root->right = NULL;
+    return ans;
+}
