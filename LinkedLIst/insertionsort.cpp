@@ -69,3 +69,28 @@ public:
         return sortedHead -> next;
     }
 };
+
+
+//Second Approach using vector
+
+Node *insertionSort(Node *head){
+    if (head == NULL || head -> next == NULL){
+        return head;
+    }
+    vector<int> v;
+    Node *temp = head;
+    while(temp != NULL){
+        v.push_back(temp->data);
+        temp = temp->next;
+    }
+
+    int k = 0;
+    temp = head;
+    sort(v.begin().v.end());
+    while(temp != NULL){
+        temp->data = v[k++];
+        temp = temp->next;
+    }
+
+    return head;
+}
