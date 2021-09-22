@@ -36,3 +36,36 @@ Constraints:
 
 The number of nodes in the list is in the range [1, 5000].
 -5000 <= Node.val <= 5000
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(head == NULL || head -> next == NULL){
+            return head;
+        }
+        ListNode *pre = new ListNode(0);
+        ListNode *sortedHead = pre;
+        ListNode *current = head;
+        while(current != NULL){
+            ListNode *temp = current -> next;
+            while(pre && pre -> next && pre -> next -> val < current -> val){
+                pre = pre -> next;
+            }
+            current -> next = pre -> next;
+            pre -> next = current;
+            current  = temp;
+            pre = sortedHead;
+        }
+        return sortedHead -> next;
+    }
+};
