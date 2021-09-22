@@ -66,3 +66,20 @@ intersectVal == listA[skipA] == listB[skipB] if listA and listB intersect.
  
 
 Follow up: Could you write a solution that runs in O(n) time and use only O(1) memory?
+
+
+Node *getIntersectionNode(Node *headA, Node *headB){
+    unordered_map<Node *, bool> map;
+    while(headB != NULL){
+        map[headB] = true;
+        headB = headB->next;
+    }
+
+    while(headA != NULL){
+        if(map.find(headA) != map.end()){
+            return headA;
+        }
+        head = head->next;
+    }
+    return NULL;
+}
