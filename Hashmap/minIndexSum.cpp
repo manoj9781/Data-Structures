@@ -45,3 +45,22 @@ Constraints:
 list1[i] and list2[i] consist of spaces ' ' and English letters.
 All the stings of list1 are unique.
 All the stings of list2 are unique.
+
+class Solution {
+public:
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+        unordered_map<string, int>map;
+        vector<string> ans;
+       for(int i = 0; i < list1.size(); i++){
+           map[list1[i]] = i;
+       }
+        int minSum = INT_MAX;
+        for(int i = 0; i < list2.size(); i++){
+            if(map.find(list2[i]) != map.end()){
+                    ans.push_back(list2[i]);
+                } 
+            }
+        
+        return ans;
+    }
+};
