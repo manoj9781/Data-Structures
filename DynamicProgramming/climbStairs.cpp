@@ -34,3 +34,15 @@ Explanation: There are three ways to climb to the top.
 Constraints:
 
 1 <= n <= 45
+
+  int climbStairs(int n) {
+        if(n == 0 || n== 1){
+            return 1;
+        }
+        else if(n == 2){
+            return 2;
+        }
+        else{
+            return climbStairs(n-2) + climbStairs(n-1);
+        }
+  }
