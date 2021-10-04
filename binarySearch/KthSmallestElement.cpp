@@ -33,3 +33,22 @@ n == matrix[i].length
 -109 <= matrix[i][j] <= 109
 All the rows and columns of matrix are guaranteed to be sorted in non-decreasing order.
 1 <= k <= n2
+
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        
+        priority_queue<int> p;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                p.push(matrix[i][j]);
+            }
+        }
+        while(p.size() > k){
+            p.pop();
+        }
+        return p.top();
+    }
+};
