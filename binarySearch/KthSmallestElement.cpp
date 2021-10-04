@@ -52,3 +52,29 @@ public:
         return p.top();
     }
 };
+
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& matrix, int k) {
+        int n = matrix.size();
+        int left = matrix[0][0], right = matrix[n-1][n-1];
+        
+        while(left <= right){
+            int mid = left + (right-left)/2;
+            int num = 0;
+            
+            for (int i = 0; i < n; ++i){
+                int pos = upper_bound(begin(matrix[i]), end(matrix[i]), mid) - begin(matrix[i]);
+                num += pos;
+            }
+            
+            if (num < k){
+                left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
+        }
+        return left;
+    }
+};
