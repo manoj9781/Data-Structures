@@ -38,3 +38,27 @@ Constraints:
 
 1 <= s.length <= 5 * 105
 s consists of uppercase and lowercase English letters and digits.
+
+
+class Solution {
+public:
+    string frequencySort(string s) {
+      unordered_map<char, int> map;
+      priority_queue<pair<int, int>> pendingNodes;
+        string str;
+      for(int i = 0; i < s.size(); i++){
+          map[s[i]]++;
+      }  
+        for(auto i : map){
+            pendingNodes.push({i.second, i.first});
+        }
+        while(pendingNodes.size() != 0){
+            pair<int, int> temp = pendingNodes.top();
+            pendingNodes.pop();
+            for(int i = 0; i < temp.first; i++){
+                str += temp.second; 
+            }
+        }
+        return str;
+    }
+};
