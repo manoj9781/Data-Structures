@@ -34,3 +34,16 @@ edges[i].length == 2
 1 <= ui, vi <= n
 ui != vi
 The given edges represent a valid star graph.
+
+
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int num1 = edges[0][0];
+        int num2 = edges[0][1];
+        if(num1 == edges[1][0] || num2 == edges[1][1]){
+            return num1;
+        }
+        return num2;
+    }
+};
