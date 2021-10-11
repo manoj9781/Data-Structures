@@ -47,3 +47,28 @@ n == graph.length
 graph[i][j] != i (i.e., there will be no self-loops).
 All the elements of graph[i] are unique.
 The input graph is guaranteed to be a DAG.
+
+
+class Solution {
+public:
+    
+    void allPathsSourceTarget( vector<vector<int>> &graph,  vector<vector<int>> &ans, vector<int> &temp, int start){
+        temp.push_back(start);
+        if(start == graph.size()-1){
+            ans.push_back(temp);
+        }
+        else{
+            for(int end : graph[start]){
+                allPathsSourceTarget(graph, ans, temp, end);
+                temp.pop_back();
+            }
+        }
+    }
+    
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<vector<int>> ans;
+        vector<int> temp;
+        allPathsSourceTarget(graph, ans, temp, 0);
+        return ans;
+    }
+};
