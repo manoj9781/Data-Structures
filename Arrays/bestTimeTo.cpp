@@ -40,3 +40,14 @@ Constraints:
 
 1 <= prices.length <= 3 * 104
 0 <= prices[i] <= 104
+
+int maxProfit(vector<int> &input){
+    int ans = 0;
+    int n = input.size();
+    for (int i = 0; i < n - 1; i++){
+        if(input[i] < input[i+1]){
+            ans += input[i + 1] - input[i];
+        }
+    }
+    return ans;
+}
