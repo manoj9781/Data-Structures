@@ -55,18 +55,45 @@ int allIndex(int input[], int size, int x, int output[]){
     }
 }
 
-int main(){
-    int n;
-    cout << "Enter number of elements" << endl;
-    cin >> n;
-    int *input = new int[n];
-    cout << "Enter elements" << endl;
-    for (int i = 0; i < n; i++){
-        cin >> input[i];
+int countZeros(int n){
+    if(n == 0){
+        return 0;
     }
-    // cout << firstIndex(input, n, 5) << endl;
-    cout << "Enter element for search" << endl;
-    int k;
-    cin >> k;
-    // cout << lastIndex(input, n, k) << endl;
+    if(n%10 ==0){
+        return 1 + countZeros(n / 10);
+    }
+    return countZeros(n / 10);
 }
+
+int countZeros2(int n){
+    int count = 0;
+    while(n >= 0){
+        int r = n % 10;
+        if(r == 0){
+            count++;
+        }
+        n = n / 10;
+    }
+    return count;
+}
+
+int main(){
+    cout << countZeros(1000) << endl;
+    cout << countZeros2(1000) << endl;
+}
+
+// int main(){
+//     int n;
+//     cout << "Enter number of elements" << endl;
+//     cin >> n;
+//     int *input = new int[n];
+//     cout << "Enter elements" << endl;
+//     for (int i = 0; i < n; i++){
+//         cin >> input[i];
+//     }
+//     // cout << firstIndex(input, n, 5) << endl;
+//     cout << "Enter element for search" << endl;
+//     int k;
+//     cin >> k;
+//     // cout << lastIndex(input, n, k) << endl;
+// }
