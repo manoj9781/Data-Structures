@@ -35,6 +35,26 @@ int lastIndex(int input[], int size, int x){
     }
 }
 
+int allIndex(int input[], int size, int x, int output[]){
+    if(size == 0){
+        return -1;
+    }
+    int smallOutput = allIndex(input + 1, size - 1, x, output);
+    if(input[0] == x){
+        for (int i = smallOutput - 1; i >= 0; i--){
+            output[i + 1] = output[i] + 1;
+        }
+        output[0] = 0;
+        smallOutput++;
+    }
+    else{
+        for (int i = smallOutput; i >= 0; i--){
+            output[i] = output[i] + 1;
+        }
+        return smallOutput;
+    }
+}
+
 int main(){
     int n;
     cout << "Enter number of elements" << endl;
@@ -45,8 +65,8 @@ int main(){
         cin >> input[i];
     }
     // cout << firstIndex(input, n, 5) << endl;
-    cout << "Enter elements for search" << endl;
+    cout << "Enter element for search" << endl;
     int k;
     cin >> k;
-    cout << lastIndex(input, n, k) << endl;
+    // cout << lastIndex(input, n, k) << endl;
 }
