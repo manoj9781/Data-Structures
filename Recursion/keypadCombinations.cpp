@@ -5,7 +5,7 @@ int keypad(int num, string output[], string dialer[])
 {
     if (num == 0)
     {
-        output[0] = " ";
+        output[0] = " "; 
         return 1;
     }
     int lastDigit = num % 10;
