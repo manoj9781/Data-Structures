@@ -8,12 +8,10 @@ private:
 public:
     int rollNumber;
 
-    void dispaly()
+    void display()
     {
         cout << age << " " << rollNumber << endl;
     }
-
-private:
     void setAge(int a)
     {
         age = a;
