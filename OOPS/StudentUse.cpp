@@ -14,5 +14,6 @@ int main()
     s2 = s1;
 
     Student *s4 = new Student;
-    
+
+    delete s4;
 }
