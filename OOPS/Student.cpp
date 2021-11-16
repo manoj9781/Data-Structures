@@ -8,6 +8,21 @@ private:
 public:
     int rollNumber;
 
+//Default Constructor
+    Student(){
+        cout << "Default Constructor " << endl;
+    }
+
+    Student(int a){
+        cout << "Parameterized Contructor " << endl;
+        age = a;
+    }
+    Student(int a, int r){
+        cout << "Parameterized Contructor with Two arguments " << endl;
+        age = a;
+        rollNumber = r;
+    }
+
     void display()
     {
         cout << age << " " << rollNumber << endl;
