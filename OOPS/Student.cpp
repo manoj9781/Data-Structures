@@ -26,9 +26,16 @@ public:
         cout << "Parameterized Contructor " << endl;
         age = a;
     }
+
+    /* This is the special keyword which holds the address of the current
+    object.
+    This is the pointer also 
+   */
+
     Student(int a, int r)
     {
         cout << "Parameterized Contructor with Two arguments " << endl;
+        cout << "This : " << this << endl;
         age = a;
         rollNumber = r;
     }

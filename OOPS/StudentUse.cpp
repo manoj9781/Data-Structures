@@ -4,10 +4,6 @@ using namespace std;
 
 int main()
 {
-    Student s1;
-    Student s2(10);
-    Student s3(15, 1001);
-    s1.display();
-    s2.display();
-    s3.display();
+    Student s1(10, 1001);
+    cout << "Address of S1 : " << &s1;
 }
