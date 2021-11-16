@@ -13,7 +13,7 @@ class Fraction{
     }
 
     void print(){
-        cout << this->numerator << "/" << this->denominator;
+        cout << this->numerator << "/" << this->denominator << endl;
     }
 
     void simplify(){
