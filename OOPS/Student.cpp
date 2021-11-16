@@ -40,6 +40,19 @@ public:
         rollNumber = r;
     }
 
+    //Destructor 
+    /*
+    Deallocate the memory of the objects 
+    same name as the class name 
+    No return type 
+    No input arguments
+    starts with ~ sign
+    */
+
+   ~Student(){
+       cout << "Destructor Called " << endl;
+   }
+
     void display()
     {
         cout << age << " " << rollNumber << endl;
