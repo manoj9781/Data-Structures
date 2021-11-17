@@ -28,7 +28,7 @@ class Fraction{
         this->denominator = this->denominator / gcd;
     }
 
-    void add(Fraction f2){
+    void add(Fraction const &f2){
         int lcm = this->denominator * f2.denominator;
         int x = lcm / this->denominator;
         int y = lcm / f2.denominator;
@@ -36,6 +36,12 @@ class Fraction{
 
         this->numerator = num;
         this->denominator = lcm;
+        simplify();
+    }
+
+    void multiply(Fraction const &f2){
+        this->numerator = this->numerator * f2.numerator;
+        this->denominator = this->denominator * f2.denominator;
         simplify();
     }
 };
