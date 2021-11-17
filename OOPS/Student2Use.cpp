@@ -1,6 +1,6 @@
-#include<iostream>
-using namespace std;
-#include "Student2.cpp"
+// #include<iostream>
+// using namespace std;
+// #include "Student2.cpp"
 // int main(){
 //     char name[] = "abcd";
 //     Student s1(20, name);
@@ -12,7 +12,18 @@ using namespace std;
 //     s1.display();
 // }
 
+// int main(){
+//     Studnet s1(12, 1001);
+//     Studnet s2(14, 1002);
+// }
+
+
+#include<iostream>
+using namespace std;
+#include "Student2.cpp"
+
 int main(){
-    Studnet s1(12, 1001);
-    Studnet s2(14, 1002);
+    Student s1, s2, s3, s4, s5;
+
+    cout << Student::getTotalStudent() << endl;
 }
