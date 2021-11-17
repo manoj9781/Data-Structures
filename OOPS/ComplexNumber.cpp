@@ -20,12 +20,13 @@ public:
     void add(ComplexNumber c)
     {
         this->real = this->real + c.real;
-        this->imaginary = this->imaginary + c.real;
+        this->imaginary = this->imaginary + c.imaginary;
     }
     void multiply(ComplexNumber c)
     {
-        this->real = (this->real * c.real) - (this->imaginary * c.imaginary);
-
-        this->imaginary = (this->real * c.imaginary) + (this->imaginary * c.real);
+        int a = (this->real * c.real) - (this->imaginary * c.imaginary);
+        int b = (this->real * c.imaginary) + (this->imaginary * c.real);
+        this->real = a;
+        this->imaginary = b;
     }
 };
