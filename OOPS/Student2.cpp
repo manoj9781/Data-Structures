@@ -7,9 +7,10 @@ class Student
 {
 private:
     int age;
-    char *name;
+    
 
 public:
+char *name;
     Student(int age, char *name)
     {
         this->age = age;
@@ -26,5 +27,8 @@ public:
         this->age = s.age;
         this->name = new char[strlen(s.name) + 1];
         strcpy(this->name, name);
+    }
+    void display(){
+        cout << this->name << " " << this->age << endl;
     }
 };
