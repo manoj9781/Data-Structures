@@ -7,12 +7,28 @@ class Fraction{
         int numerator;
         int denominator;
     public:
+    Fraction(){
+
+    }
     Fraction(int numerator, int denominator){
         this->numerator = numerator;
         this->denominator = denominator;
     }
 
-    void print(){
+    int getNumerator() const {
+        return numerator;
+    }
+    int getDonominator() const {
+        return denominator;
+    }
+    void setNumerator(int numerator){
+        this->numerator = numerator;
+    }
+    void setDenominator(int denominator){
+        this->denominator = denominator;
+    }
+
+    void print() const {
         cout << this->numerator << "/" << this->denominator << endl;
     }
 
