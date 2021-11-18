@@ -70,4 +70,13 @@ class Fraction{
         this->denominator = this->denominator * f2.denominator;
         simplify();
     }
+
+    Fraction Multiply(Fraction const &f2) const{
+        int n = this->numerator * f2.numerator;
+        int d = this->denominator * f2.denominator;
+
+        Fraction fNew(n, d);
+        fNew.simplify();
+        return fNew;
+    }
 };
