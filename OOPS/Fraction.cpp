@@ -104,8 +104,17 @@ class Fraction{
 
     // Pre-Increment
     Fraction& operator++(){
-        this->numerator = this->numerator + this->denominator;
+        numerator = this->numerator + this->denominator;
         simplify();
         return *this;
+    }
+
+    //Post Increment
+    Fraction operator++(int){
+        Fraction fNew(numerator, denominator);
+        numerator = numerator + denominator;
+        simplify();
+        fNew.simplify();
+        return fNew;
     }
 };
