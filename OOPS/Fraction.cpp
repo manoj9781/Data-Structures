@@ -80,6 +80,7 @@ class Fraction{
         return fNew;
     }
 
+   // Add operator
     Fraction operator+(Fraction const &f2) const{
         int lcm = this->denominator * f2.denominator;
         int x = lcm / this->denominator;
@@ -90,6 +91,8 @@ class Fraction{
         fNew.simplify();
         return fNew;
     }
+
+    //Multiply Operator
     Fraction operator*(Fraction const &f2) const{
         int n = this->numerator * f2.numerator;
         int d = this->denominator * f2.denominator;
@@ -98,6 +101,8 @@ class Fraction{
         fNew.simplify();
         return fNew;
     }
+
+    // Equal to operator
     bool operator==(Fraction const &f2) const{
         return (this->numerator == f2.numerator && this->denominator == f2.denominator);
     }
@@ -117,4 +122,19 @@ class Fraction{
         fNew.simplify();
         return fNew;
     }
+
+    //Plus equalto Opeartor
+
+    Fraction& operator+=(Fraction const &f2){
+        int lcm = this->denominator * f2.denominator;
+        int x = lcm / this->denominator;
+        int y = lcm / f2.denominator;
+        int num = (x * this->numerator) + (y * f2.numerator);
+
+        this->numerator = num;
+        this->denominator = lcm;
+        simplify();
+    }
+
+
 };
