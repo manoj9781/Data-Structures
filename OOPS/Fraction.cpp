@@ -136,5 +136,13 @@ class Fraction{
         simplify();
     }
 
+    // Pre-Decrement
+
+    Fraction& operator--(){
+        numerator = numerator - denominator;
+        simplify();
+        return *this;
+    }
+
 
 };
