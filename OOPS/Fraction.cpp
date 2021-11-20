@@ -144,5 +144,12 @@ class Fraction{
         return *this;
     }
 
+    //Post Decrement
+
+    Fraction operator--(int){
+        numerator = numerator - denominator;
+        return *this;
+    }
+
 
 };
