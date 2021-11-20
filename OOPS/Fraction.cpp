@@ -101,4 +101,11 @@ class Fraction{
     bool operator==(Fraction const &f2) const{
         return (this->numerator == f2.numerator && this->denominator == f2.denominator);
     }
+
+    // Pre-Increment
+    Fraction& operator++(){
+        this->numerator = this->numerator + this->denominator;
+        simplify();
+        return *this;
+    }
 };
