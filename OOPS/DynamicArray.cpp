@@ -28,6 +28,15 @@ public:
         this->nextIndex = d.nextIndex;
     }
 
+    void operator=(DynamicArray const &d){
+        this->data = new int[d.capacity];
+        for (int i = 0; i < nextIndex; i++){
+            this->data[i] = d.data[i];
+        }
+        this->capacity = d.capacity;
+        this->nextIndex = d.nextIndex;
+    }
+
     void print()
     {
         for (int i = 0; i < nextIndex; i++)
