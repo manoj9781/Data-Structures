@@ -27,7 +27,8 @@ public:
         this->capacity = d.capacity;
         this->nextIndex = d.nextIndex;
     }
-
+    
+    //Copy Assignment operator
     void operator=(DynamicArray const &d){
         this->data = new int[d.capacity];
         for (int i = 0; i < nextIndex; i++){
@@ -35,6 +36,19 @@ public:
         }
         this->capacity = d.capacity;
         this->nextIndex = d.nextIndex;
+    }
+    void add(int element){
+        if(nextIndex == capacity){
+            int *newData = new int[capacity * 2];
+            for (int i = 0; i < nextIndex; i++){
+                newData[i] = data[i];
+            }
+            delete[] data;
+            data = newData;
+            capacity *= 2;
+        }
+        data[nextIndex] = element;
+        nextIndex++;
     }
 
     void print()
