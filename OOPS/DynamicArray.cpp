@@ -50,6 +50,25 @@ public:
         data[nextIndex] = element;
         nextIndex++;
     }
+    int getElement(int index){
+        if(index < nextIndex){
+            return data[index];
+        }
+        else{
+            return -1;
+        }
+    }
+    void add(int index, int element){
+        if(index < nextIndex){
+            data[index] = element;
+        }
+        else if(nextIndex == index){
+            add(element);
+        }
+        else{
+            return;
+        }
+    }
 
     void print()
     {
