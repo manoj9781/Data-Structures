@@ -113,6 +113,26 @@ Node *insert(Node *head, int i, int data){
     return head;
 }
 
+Node *deleteNode(Node *head, int i){
+    if(head == NULL){
+        return NULL;
+    }
+    if(i == 0){
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        return head->next;
+    }
+
+    int count = 0;
+    Node *temp = head;
+    while(temp -> next != NULL && count < i){
+        temp = temp->next;
+        count++;
+    }
+    return temp->next->next;
+}
+
 int main(){
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
