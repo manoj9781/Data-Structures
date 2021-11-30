@@ -55,9 +55,21 @@ void print(Node *head){
     cout << endl;
 }
 
-int main(){
+int lenght(Node *head){
+    if(head == NULL){
+        return 0;
+    }
+    int count = 0;
+    Node *temp = head;
+    while(temp != NULL){
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
 
-    // Node *head = takeInput();
+int main(){
     Node *head = takeInputBetter();
     print(head);
+    cout << "Length of the linked list is " << lenght(head) << endl;
 }
