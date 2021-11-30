@@ -88,13 +88,38 @@ void print(Node *head, int i){
     return;
 }
 
+Node *insert(Node *head, int i, int data){
+    if(head == NULL){
+        Node *newNode = new Node(data);
+        return newNode;
+    }
+    if(i == 0){
+        Node *newNode = new Node(data);
+        newNode->next = head;
+        return newNode;
+    }
+
+    Node *temp = head;
+    int count = 0;
+    while(temp -> next != NULL && count < i -1){
+        temp = temp->next;
+        count++;
+    }
+    if(temp -> next != NULL){
+        Node *newNode = new Node(data);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+    return head;
+}
+
 int main(){
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
-    cout << "Length of the linked list is " << lenght(head) << endl;
-    cout << "Enter position for printing" << endl;
-    int i;
-    cin >> i;
-    print(head, i);
+    int data, i;
+    cout << "Enter position and data" << endl;
+    cin >> i >> data;
+    head = insert(head, i, data);
+    print(head);
 }
