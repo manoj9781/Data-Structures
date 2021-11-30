@@ -68,8 +68,33 @@ int lenght(Node *head){
     return count;
 }
 
+void print(Node *head, int i){
+    if(head == NULL){
+        return;
+    }
+    if(i == 0){
+        cout << head->data;
+        return;
+    }
+    Node *temp = head;
+    int count = 0;
+    while(temp -> next != NULL && count < i){
+        temp = temp->next;
+        count++;
+    }
+    if(temp -> next != NULL){
+        cout << temp->data;
+    }
+    return;
+}
+
 int main(){
+    cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
     cout << "Length of the linked list is " << lenght(head) << endl;
+    cout << "Enter position for printing" << endl;
+    int i;
+    cin >> i;
+    print(head, i);
 }
