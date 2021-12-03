@@ -35,3 +35,12 @@ Sample Input 2:
 Sample Output 2:
 4
 10
+
+
+int findUnique(int *input, int size){
+    int ans = 0;
+    for (int i = 0; i < size; i++){
+        ans = ans ^ input[i];
+    }
+    return ans;
+}
