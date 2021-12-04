@@ -117,20 +117,26 @@ Node *deleteNode(Node *head, int i){
     if(head == NULL){
         return NULL;
     }
-    if(i == 0){
-        Node *temp = head;
-        head = head->next;
-        delete temp;
-        return head->next;
-    }
-
     int count = 0;
     Node *temp = head;
-    while(temp -> next != NULL && count < i){
+    if(i == 0){
+        Node *a = head;
+        head = head->next;
+        delete a;
+        return head;
+    }
+    while(temp != NULL && count < i-1){
         temp = temp->next;
         count++;
     }
-    return temp->next->next;
+    if(temp != NULL){
+        Node *a = temp->next;
+        Node *b = a->next;
+        temp->next = b;
+        delete a;
+        return head;
+    }
+    return head;
 }
 
 int main(){
@@ -138,8 +144,8 @@ int main(){
     Node *head = takeInputBetter();
     print(head);
     int data, i;
-    cout << "Enter position and data" << endl;
-    cin >> i >> data;
-    head = insert(head, i, data);
+    cout << "Enter position" << endl;
+    cin >> i;
+    head = deleteNode(head, i);
     print(head);
 }
