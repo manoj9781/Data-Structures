@@ -113,6 +113,8 @@ Node *insert(Node *head, int i, int data){
     return head;
 }
 
+
+
 Node *deleteNode(Node *head, int i){
     if(head == NULL){
         return NULL;
@@ -139,13 +141,17 @@ Node *deleteNode(Node *head, int i){
     return head;
 }
 
+int lengthRecursive(Node *head){
+    if(head == NULL){
+        return 0;
+    }
+    int ans = lengthRecursive(head->next);
+    return ans + 1;
+}
+
 int main(){
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    print(head);
-    int data, i;
-    cout << "Enter position" << endl;
-    cin >> i;
-    head = deleteNode(head, i);
-    print(head);
+    cout << lengthRecursive(head) << endl;
+    cout << lenght(head) << endl;
 }
