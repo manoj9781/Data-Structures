@@ -149,9 +149,25 @@ int lengthRecursive(Node *head){
     return ans + 1;
 }
 
+Node *insertNodeRecursive(Node *head, int data, int i){
+    if(head == NULL){
+        return NULL;
+    }
+    if(i == 0){
+        Node *newNode = new Node(data);
+        newNode->next = head;
+        return newNode;
+    }
+
+    Node *temp = insertNodeRecursive(head->next, data, i - 1);
+    head->next = temp;
+    return head;
+}
+
 int main(){
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    cout << lengthRecursive(head) << endl;
-    cout << lenght(head) << endl;
+    Node *temp = insertNodeRecursive(head, 100, 0);
+    print(temp);
+
 }
