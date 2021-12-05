@@ -164,10 +164,26 @@ Node *insertNodeRecursive(Node *head, int data, int i){
     return head;
 }
 
+
+Node *deleteNodeRecursive(Node *head, int i){
+    if(head == NULL){
+        return NULL;
+    }
+    if(i == 0){
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    Node *temp = deleteNodeRecursive(head->next, i - 1);
+    head->next = temp;
+    return head;
+}
+
 int main(){
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    Node *temp = insertNodeRecursive(head, 100, 0);
-    print(temp);
-
+    head = deleteNodeRecursive(head, 0);
+    print(head);
 }
