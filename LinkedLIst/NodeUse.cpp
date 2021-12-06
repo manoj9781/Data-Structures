@@ -238,10 +238,29 @@ int findNode(Node *head, int n)
         }
         temp = temp->next;
     }
-    if(flag == 0){
+    if (flag == 0)
+    {
         return -1;
     }
     return index;
+}
+
+Node *appendToLast(Node *head, int n){
+    if(n == 0 || head == NULL){
+        return NULL;
+    }
+    Node *temp = head;
+    Node *slow = head;
+    for (int i = 1; i < n -1 ; i++){
+        temp = temp->next;
+    }
+    Node *ans = temp->next;
+    while(slow -> next != NULL){
+        slow = slow->next;
+    }
+    slow->next = head;
+    temp->next = NULL;
+    return ans;
 }
 
 int main()
@@ -249,6 +268,6 @@ int main()
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
-
-    cout << findNode(head, 30);
+    head = appendToLast(head, 3);
+    print(head);
 }
