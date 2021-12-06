@@ -279,11 +279,18 @@ Node *removeDuplicates(Node *head){
     return head;
 }
 
+void reverseList(Node *head){
+    if(head == NULL){
+        return;
+    }
+    reverseList(head->next);
+    cout << head->data <<" ";
+}
+
 int main()
 {
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
-    head = removeDuplicates(head);
-    print(head);
+    reverseList(head);
 }
