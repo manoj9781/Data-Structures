@@ -1,19 +1,23 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 #include "Node.cpp"
 
-Node *takeInputBetter(){
+Node *takeInputBetter()
+{
     int data;
     cin >> data;
     Node *head = NULL;
     Node *tail = NULL;
-    while(data != -1){
+    while (data != -1)
+    {
         Node *newNode = new Node(data);
-        if(head == NULL){
+        if (head == NULL)
+        {
             head = newNode;
             tail = newNode;
         }
-        else{
+        else
+        {
             tail->next = newNode;
             tail = tail->next;
         }
@@ -22,18 +26,23 @@ Node *takeInputBetter(){
     return head;
 }
 
-Node *takeInput(){
+Node *takeInput()
+{
     int data;
     cin >> data;
     Node *head = NULL;
-    while(data != -1){
+    while (data != -1)
+    {
         Node *newNode = new Node(data);
-        if(head == NULL){
+        if (head == NULL)
+        {
             head = newNode;
         }
-        else{
+        else
+        {
             Node *temp = head;
-            while (temp -> next != NULL){
+            while (temp->next != NULL)
+            {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -43,57 +52,71 @@ Node *takeInput(){
     return head;
 }
 
-void print(Node *head){
-    if(head == NULL){
+void print(Node *head)
+{
+    if (head == NULL)
+    {
         return;
     }
     Node *temp = head;
-    while(temp != NULL){
+    while (temp != NULL)
+    {
         cout << temp->data << " ";
         temp = temp->next;
     }
     cout << endl;
 }
 
-int lenght(Node *head){
-    if(head == NULL){
+int lenght(Node *head)
+{
+    if (head == NULL)
+    {
         return 0;
     }
     int count = 0;
     Node *temp = head;
-    while(temp != NULL){
+    while (temp != NULL)
+    {
         count++;
         temp = temp->next;
     }
     return count;
 }
 
-void print(Node *head, int i){
-    if(head == NULL){
+void print(Node *head, int i)
+{
+    if (head == NULL)
+    {
         return;
     }
-    if(i == 0){
+    if (i == 0)
+    {
         cout << head->data;
         return;
     }
     Node *temp = head;
     int count = 0;
-    while(temp -> next != NULL && count < i){
+    while (temp->next != NULL && count < i)
+    {
         temp = temp->next;
         count++;
     }
-    if(temp -> next != NULL){
+    if (temp->next != NULL)
+    {
         cout << temp->data;
     }
     return;
 }
 
-Node *insert(Node *head, int i, int data){
-    if(head == NULL){
+Node *insert(Node *head, int i, int data)
+{
+    if (head == NULL)
+    {
         Node *newNode = new Node(data);
         return newNode;
     }
-    if(i == 0){
+    if (i == 0)
+    {
         Node *newNode = new Node(data);
         newNode->next = head;
         return newNode;
@@ -101,11 +124,13 @@ Node *insert(Node *head, int i, int data){
 
     Node *temp = head;
     int count = 0;
-    while(temp -> next != NULL && count < i -1){
+    while (temp->next != NULL && count < i - 1)
+    {
         temp = temp->next;
         count++;
     }
-    if(temp -> next != NULL){
+    if (temp->next != NULL)
+    {
         Node *newNode = new Node(data);
         newNode->next = temp->next;
         temp->next = newNode;
@@ -113,25 +138,28 @@ Node *insert(Node *head, int i, int data){
     return head;
 }
 
-
-
-Node *deleteNode(Node *head, int i){
-    if(head == NULL){
+Node *deleteNode(Node *head, int i)
+{
+    if (head == NULL)
+    {
         return NULL;
     }
     int count = 0;
     Node *temp = head;
-    if(i == 0){
+    if (i == 0)
+    {
         Node *a = head;
         head = head->next;
         delete a;
         return head;
     }
-    while(temp != NULL && count < i-1){
+    while (temp != NULL && count < i - 1)
+    {
         temp = temp->next;
         count++;
     }
-    if(temp != NULL){
+    if (temp != NULL)
+    {
         Node *a = temp->next;
         Node *b = a->next;
         temp->next = b;
@@ -141,19 +169,24 @@ Node *deleteNode(Node *head, int i){
     return head;
 }
 
-int lengthRecursive(Node *head){
-    if(head == NULL){
+int lengthRecursive(Node *head)
+{
+    if (head == NULL)
+    {
         return 0;
     }
     int ans = lengthRecursive(head->next);
     return ans + 1;
 }
 
-Node *insertNodeRecursive(Node *head, int data, int i){
-    if(head == NULL){
+Node *insertNodeRecursive(Node *head, int data, int i)
+{
+    if (head == NULL)
+    {
         return NULL;
     }
-    if(i == 0){
+    if (i == 0)
+    {
         Node *newNode = new Node(data);
         newNode->next = head;
         return newNode;
@@ -164,12 +197,14 @@ Node *insertNodeRecursive(Node *head, int data, int i){
     return head;
 }
 
-
-Node *deleteNodeRecursive(Node *head, int i){
-    if(head == NULL){
+Node *deleteNodeRecursive(Node *head, int i)
+{
+    if (head == NULL)
+    {
         return NULL;
     }
-    if(i == 0){
+    if (i == 0)
+    {
         Node *temp = head;
         head = head->next;
         delete temp;
@@ -181,9 +216,39 @@ Node *deleteNodeRecursive(Node *head, int i){
     return head;
 }
 
-int main(){
+int findNode(Node *head, int n)
+{
+    if (head == NULL)
+    {
+        return -1;
+    }
+    int index = -1;
+    int flag = 0;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        if (temp->data == n)
+        {
+            return index + 1;
+            flag = 1;
+        }
+        else
+        {
+            index++;
+        }
+        temp = temp->next;
+    }
+    if(flag == 0){
+        return -1;
+    }
+    return index;
+}
+
+int main()
+{
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    head = deleteNodeRecursive(head, 0);
     print(head);
+
+    cout << findNode(head, 30);
 }
