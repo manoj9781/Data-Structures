@@ -287,10 +287,34 @@ void reverseList(Node *head){
     cout << head->data <<" ";
 }
 
+#include<stack>
+
+bool isPalindrome(Node *head){
+    if(head == NULL || head -> next == NULL){
+        return true;
+    }
+    stack<int> s;
+    Node *temp = head;
+    while(temp != NULL){
+        s.push(temp->data);
+        temp = temp->next;
+    }
+    temp = head;
+    while(temp != NULL){
+        int top = s.top();
+        s.pop();
+        if(top != temp -> data){
+            return false;
+        }
+        temp = temp->next;
+    }
+    return true;
+}
+
 int main()
 {
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
-    reverseList(head);
+    cout << isPalindrome(head);
 }
