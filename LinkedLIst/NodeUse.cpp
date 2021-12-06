@@ -263,11 +263,27 @@ Node *appendToLast(Node *head, int n){
     return ans;
 }
 
+Node *removeDuplicates(Node *head){
+    if(head == NULL){
+        return head;
+    }
+    Node *temp = head;
+    while(temp -> next != NULL){
+        if(temp ->data == temp -> next -> data){
+            temp->next = temp->next->next;
+        }
+        else{
+            temp = temp->next;
+        }
+    }
+    return head;
+}
+
 int main()
 {
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
     print(head);
-    head = appendToLast(head, 3);
+    head = removeDuplicates(head);
     print(head);
 }
