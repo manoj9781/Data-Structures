@@ -21,6 +21,25 @@ int firstOccurences(int *input, int n, int key){
     }
     return ans;
 }
+int lastOccurences(int *input, int n, int key){
+    int start = 0;
+    int end = n - 1;
+    int ans = -1;
+    while(start <= end){
+        int mid = start + (end - start) / 2;
+        if(input[mid] == key){
+            ans = mid;
+            start = mid + 1;
+        }
+        else if(input[mid] > key){
+            end = mid - 1;
+        }
+        else{
+            start = mid + 1;
+        }
+    }
+    return ans;
+}
 
 int main()
 {
@@ -37,4 +56,7 @@ int main()
     cin >> key;
     int ans = firstOccurences(input, n, key);
     cout << "First Occurences of the elements is " << ans << endl;
+    ans = lastOccurences(input, n, key);
+    cout << "Last Occurences of the elements is " << ans << endl;
+    
 }
