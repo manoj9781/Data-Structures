@@ -41,6 +41,13 @@ int lastOccurences(int *input, int n, int key){
     return ans;
 }
 
+int totalOccurences(int *input, int n, int key){
+    int first = firstOccurences(input, n, key);
+    int last = lastOccurences(input, n, key);
+    return (last - first) + 1;
+}
+
+
 int main()
 {
     int n;
@@ -58,5 +65,7 @@ int main()
     cout << "First Occurences of the elements is " << ans << endl;
     ans = lastOccurences(input, n, key);
     cout << "Last Occurences of the elements is " << ans << endl;
+    ans = totalOccurences(input, n, key);
+    cout << "Total number Occurences of the elements is " << ans << endl;
     
 }
