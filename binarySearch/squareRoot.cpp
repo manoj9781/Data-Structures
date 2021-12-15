@@ -22,11 +22,7 @@ public:
         }
     }
     return ans;
-}
-
-
-    
-    
+} 
     int mySqrt(int x) {
        return sqaureRoot(x);
     }
