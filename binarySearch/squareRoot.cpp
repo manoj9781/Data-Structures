@@ -1,8 +1,6 @@
 class Solution {
 public:
-    
-    
-    
+        
  long long int sqaureRoot(long long int n){
     int start = 0;
     long long int end = n;
