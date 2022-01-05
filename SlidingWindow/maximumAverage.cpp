@@ -1,3 +1,8 @@
+
+#include<iostream>
+using namespace std;
+#include<vector>
+
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
