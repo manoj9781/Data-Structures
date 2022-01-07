@@ -311,10 +311,23 @@ bool isPalindrome(Node *head){
     return true;
 }
 
+Node *midPoint(Node *head){
+    if(head == NULL || head -> next == NULL){
+        return head;
+    }
+    Node *slow = head;
+    Node *fast = head->next;
+    while(fast != NULL && fast -> next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
 int main()
 {
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    print(head);
-    cout << isPalindrome(head);
+    Node *ans = midPoint(head);
+    cout << ans->data << endl;
 }
