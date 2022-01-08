@@ -29,3 +29,45 @@ The number of nodes in the list is n.
 1 <= n <= 500
 -500 <= Node.val <= 500
 1 <= left <= right <= n
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(head == NULL || head -> next == NULL){
+            return head;
+        }
+        vector<int> ans;
+        ListNode *temp = head;
+        while(temp != NULL){
+            ans.push_back(temp -> val);
+            temp = temp -> next;
+        }
+        left--;
+        right--;
+        while(left <= right){
+            swap(ans[left], ans[right]);
+            left++;
+            right--;
+        }
+        int i = 0;
+        int size = ans.size();
+        temp = head;
+        while(temp != NULL){
+            temp -> val = ans[i];
+            temp = temp -> next;
+            i++;
+        }
+        return head;
+        
+    }
+};
