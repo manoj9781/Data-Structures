@@ -406,11 +406,29 @@ Node *reverseBetter(Node *head){
     return reverse(head).head;
 }
 
+
+Node *reverseIterative(Node *head){
+    if(head == NULL || head -> next == NULL){
+        return head;
+    }
+    Node *prev = NULL;
+    Node *current = head;
+    while(current != NULL){
+        Node *next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
 int main()
 {
     cout << "Enter value for linked list" << endl;
     Node *head = takeInputBetter();
-    Node *ans = reverseBetter(head);
-    print(ans);
+    // Node *ans = reverseBetter(head);
+    // print(ans);
+    // cout << endl;
+    Node *ans2 = reverseIterative(head);
+    print(ans2);
     cout << endl;
 }
