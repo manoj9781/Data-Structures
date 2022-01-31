@@ -51,6 +51,37 @@ void printS(int index, vector<int> &ans, int s, int *input, int n, int sum)
     printS(index + 1, ans, s, input, n, sum);
 }
 
+// Print anyone subsuquences
+bool printOne(int index, vector<int> &ans, int s, int *input, int n, int sum)
+{
+    if (index == n)
+    {
+        if (sum == s)
+        {
+            for (auto it : ans)
+            {
+                cout << it << " ";
+            }
+            cout << endl;
+            return true;
+        }
+        return false;
+    }
+    ans.push_back(input[index]);
+    s += input[index];
+    if (printOne(index + 1, ans, s, input, n, sum) == true)
+    {
+        return true;
+    }
+    ans.pop_back();
+    s -= input[index];
+    if (printOne(index + 1, ans, s, input, n, sum) == true)
+    {
+        return true;
+    }
+    return false;
+}
+
 int main()
 {
     int n;
@@ -65,7 +96,8 @@ int main()
     }
     vector<int> ans;
     int sum = 2;
-    printS(0, ans, 0, input, n, sum);
+    printOne(0, ans, 0, input, n, sum);
+    // printS(0, ans, 0, input, n, sum);
     // cout << "SubSequences of the Array" << endl;
     // printSubsequences(0, ans, input, n);
 }
