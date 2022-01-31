@@ -81,6 +81,19 @@ bool printOne(int index, vector<int> &ans, int s, int *input, int n, int sum)
     }
     return false;
 }
+ int countSubsequences(int index, int sum, int *input, int n, int s){
+     if(index == n){
+         if(sum == s){
+             return 1;
+         }
+         return 0;
+     }
+     s += input[index];
+     int left = countSubsequences(index + 1, sum, input, n, s);
+     s -= input[index];
+     int right = countSubsequences(index + 1, sum, input, n, s);
+     return left + right;
+ }
 
 int main()
 {
@@ -96,8 +109,10 @@ int main()
     }
     vector<int> ans;
     int sum = 2;
-    printOne(0, ans, 0, input, n, sum);
+    // printOne(0, ans, 0, input, n, sum);
     // printS(0, ans, 0, input, n, sum);
     // cout << "SubSequences of the Array" << endl;
     // printSubsequences(0, ans, input, n);
+    int result = countSubsequences(0, sum, input, n, 0);
+    cout << "Result " << result << endl;
 }
