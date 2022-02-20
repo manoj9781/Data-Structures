@@ -1,191 +1,172 @@
-// #include <iostream>
-// #include <climits>
-// #include<bits/stdc++.h>
+// #include<iostream>
 // using namespace std;
 
-// int getMin(int *input, int n){
-//     int minElement = INT_MAX;
-//     for (int i = 0; i < n;i++){
-//         if(minElement > input[i]){
-//             minElement = input[i];
+// class Node{
+//     public:
+//         int data;
+//         Node *next;
+//         Node(int data){
+//             this->data = data;
+//             next = NULL;
+//         }
+// };
+
+// Node *getNode(){
+//     int data;
+//     cout << "Enter Data " << endl;
+//     cin >> data;
+//     Node *newNode = new Node(data);
+//     return newNode;
+// }
+
+// void print(Node *head){
+//     if(head == NULL){
+//         cout << "List is Empty" << endl;
+//     }
+//     else{
+//         Node *temp = head;
+//         while(temp ->next != head){
+//             cout << temp->data << " ";
+//             temp = temp->next;
+//         }
+
+//         cout << temp->data << " ";
+//     }
+//     cout << endl;
+// }
+
+// // Insertion at the End
+
+// void addAtEnd(Node *head){
+//     Node *newNode  = getNode();
+//     Node *temp = head;
+//     while(temp -> next != head){
+//         temp = temp->next;
+//     }
+//     temp->next = newNode;
+//     newNode->next = head;
+// }
+
+// // Delete from End
+
+// void deleteAtEnd(Node *head){
+//     Node *q = head;
+//     Node *temp;
+//     while(1){
+//         temp = q->next;
+//         if(temp -> next != head){
+//             q = q->next;
+//         }
+//         else{
+//             break;
 //         }
 //     }
-//     return minElement;
+//     q->next = head;
+//     delete temp;
 // }
 
-// void minSum(int index, int *input, int n, vector<int> &ans, int &result){
-   
-//     if(index == n){
-//         result += getMin(input, n);
+// //Search an element
+
+// void search(Node *head){
+//     if(head == NULL){
+//         cout << "List is empty" << endl;
+//     }
+//     bool ans = false;
+//     int num;
+//     Node *temp = head;
+//     cout << "Enter element for search" << endl;
+//     cin >> num;
+//     while(temp -> next != head){
+//         if(temp -> data == num){
+//             cout << "Element found" << endl;
+//             ans = true;
+//             break;
+//         }
+//         temp = temp->next;
+//     }
+//     if(ans == false){
+//         cout << "Element not found" << endl;
 //         return;
 //     }
-//     ans.push_back(input[index]);
-//     minSum(index + 1, input, n, ans, result);
-//     ans.pop_back();
-//     minSum(index + 1, input, n, ans, result);
-    
 // }
 
-// int main()
+// // Deletion at the begining
+
+//  Node *deleteFirst(Node *head)
 // {
-//     int n;
-//     cin >> n;
-//     int input[100];
-//     for (int i = 0; i < n; i++)
-//     {
-//         cin >> input[i];
+//     Node *temp = head;
+//     while(temp -> next != head){
+//         temp = temp->next;
 //     }
-//     vector<int> ans;
-//     int result = 0;
-//     minSum(0, input, n, ans, result);
-//     cout << result << endl;
-// }
-
-
-/* Copyright 2008, 2010, Oracle and/or its affiliates.
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 of the License.
-
-There are special exceptions to the terms and conditions of the GPL
-as it is applied to this software. View the full text of the
-exception in file EXCEPTIONS-CONNECTOR-C++ in the directory of this
-software distribution.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-*/
-
-// /* Standard C++ includes */
-// #include <stdlib.h>
-// #include <iostream>
-
-// /*
-//   Include directly the different
-//   headers from cppconn/ and mysql_driver.h + mysql_util.h
-//   (and mysql_connection.h). This will reduce your build time!
-// */
-
-// #include "mysql_connection.h"
-
-// #include <cppconn/driver.h>
-// #include <cppconn/exception.h>
-// #include <cppconn/resultset.h>
-// #include <cppconn/statement.h>
-
-// using namespace std;
-
-// int main(void)
-// {
-// cout << endl;
-// cout << "Running 'SELECT 'Hello World!' »
-//    AS _message'..." << endl;
-
-// try {
-//   sql::Driver *driver;
-//   sql::Connection *con;
-//   sql::Statement *stmt;
-//   sql::ResultSet *res;
-
-//   /* Create a connection */
-//   driver = get_driver_instance();
-//   con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
-//   /* Connect to the MySQL test database */
-//   con->setSchema("test");
-
-//   stmt = con->createStatement();
-//   res = stmt->executeQuery("SELECT 'Hello World!' AS _message");
-//   while (res->next()) {
-//     cout << "\t... MySQL replies: ";
-//     /* Access column data by alias or column name */
-//     cout << res->getString("_message") << endl;
-//     cout << "\t... MySQL says it again: ";
-//     /* Access column data by numeric offset, 1 is the first column */
-//     cout << res->getString(1) << endl;
-//   }
-//   delete res;
-//   delete stmt;
-//   delete con;
-
-// } catch (sql::SQLException &e) {
-//   cout << "# ERR: SQLException in " << __FILE__;
-//   cout << "(" << __FUNCTION__ << ") on line " »
-//      << __LINE__ << endl;
-//   cout << "# ERR: " << e.what();
-//   cout << " (MySQL error code: " << e.getErrorCode();
-//   cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-// }
-
-// cout << endl;
-
-// return EXIT_SUCCESS;
-// }
-
-
-#include <iostream>
-#include <climits>
-#include<bits/stdc++.h>
-using namespace std;
-
-
-// int minSum(int yash, int rohit, int diff){
-//     if(rohit <= yash && diff >= 0){
-//         return -1;
-//     }
-//     int rohitTotal = rohit;
-//     int yashTotal = yash + diff;
-//     int count = 1;
-//     while( rohitTotal <= yashTotal){
-//         rohitTotal += rohit;
-//         yashTotal += yash;
-//         count++;
-//     }
-//     return rohitTotal - yashTotal;
+//     temp->next = head->next;
+//     Node *ans = head;
+//     head = head->next;
+//     delete ans;
+//     return head;
 // }
 
 // int main(){
-//     cout << minSum(3, 5, 5);
+//     Node *head;
+//     Node *tail;
+//     Node *temp;
+//     int n, i;
+//     cout << "Enter Number of Nodes " << endl;
+//     cin >> n;
+//     for (i = 0; i < n; i++){
+//         if(i == 0){
+//             head = getNode();
+//             head->next = head;
+//             tail = head;
+//         }
+//         else{
+//             temp = getNode();
+//             tail->next = temp;
+//             temp->next = head;
+//             tail = temp;
+//         }
+//     }
+//     cout << "Input List" << endl;
+//     print(head);
+//     cout << "Enter Element for add at the end" << endl;
+//     addAtEnd(head);
+//     print(head);
+//     cout << "List after delete at end" << endl;
+//     deleteAtEnd(head);
+//     print(head);
+//     search(head);
+//     head =  deleteFirst(head);
+//     cout << "List after delete at first" << endl;
+//     print(head);
 // }
 
+#include <bits/stdc++.h>
 
-vector<int> count(int n){
-    queue<int> q;
-    q.push(1);
-    int t;
+using namespace std;
+int main()
+{
     vector<int> ans;
-    while(!q.empty()){
-        
-        t = q.front();
-        q.pop();
-       
-        if(t < n){
-            ans.push_back(t);
-            q.push(t * 10);
-            q.push(t * 10 + 1);
-        } 
-    }
-    return ans;
-}
-
-int main(){
-    
-    vector<int> ans = count(100);
-    int size = ans.size();
-    int result = 0;
-    cout << "size " << size << endl;
-    for (int i = 0; i< size; i++)
+    int element;
+    cin >> element;
+    while (element > 0)
     {
-        cout << ans[i];
-        result++;
-        if(result < size){
-            cout << ",";
+        ans.push_back(element);
+        cin >> element;
+    }
+    int sum = 0;
+    int j = 0;
+    for (int i = 0; i < ans.size(); i++){
+        if(ans[i] < 100 && sum < 100){
+            sum += ans[i];
+            
+
+        }
+        else{
+            ans[j++] = ans[i];
         }
     }
+
+        for (int i = 0; i < ans.size(); i++)
+        {
+            cout << ans[i] << endl;
+        }
 }

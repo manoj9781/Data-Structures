@@ -1,76 +1,61 @@
 #include <iostream>
 using namespace std;
-
-void swap(int &a, int &b)
+void swap(int *a, int *b)
 {
-    int temp = a;
-    a = b;
-    b = temp;
+    int t = *a;
+    *a = *b;
+    *b = t;
 }
 
-int partition(int input[], int start, int end)
+int partition(int arr[], int low, int high)
 {
-    int pivot = input[0];
-    int count = 0;
-    for (int i = start; i <= end; i++)
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++)
     {
-        if (input[i] < pivot)
-        {
-            count++;
-        }
-    }
-    int PI = start + count;
-    swap(input[start], input[PI]);
-    int i = start;
-    int j = end;
-    while (i < PI && j > PI)
-    {
-        if (input[i] < input[PI])
+        if (arr[j] <= pivot)
         {
             i++;
-        }
-        else if (input[j] >= input[PI])
-        {
-            j--;
-        }
-        else
-        {
-            swap(input[i], input[j]);
-            i++;
-            j--;
+            swap(&arr[i], &arr[j]);
         }
     }
-    return PI;
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
 }
 
-void quickSort(int input[], int start, int end)
+void quickSort(int arr[], int low, int high)
 {
-    if (start >= end)
+    if (low < high)
     {
-        return;
+        int pivot = partition(arr, low, high);
+
+        quickSort(arr, low, pivot - 1);
+        quickSort(arr, pivot + 1, high);
     }
-    int index = partition(input, start, end);
-    quickSort(input, start, index - 1);
-    quickSort(input, index + 1, end);
 }
 
-int main(){
+void displayArray(int arr[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        cout << arr[i] << " ";
+}
+int main()
+{
     int n;
     cout << "Enter Number of elements" << endl;
     cin >> n;
     int *input = new int[n];
-    for (int i = 0; i < n; i++){
-        cin >> input[i];
-    }
-    cout << "Before merge Sort" << endl;
-    for (int i = 0; i < n; i++){
-        cout << input[i] << " ";
-    }
-    cout << "\nAfter Merge Sort" << endl;
-    quickSort(input, 0, n);
     for (int i = 0; i < n; i++)
     {
-        cout << input[i] << " ";
+        cin >> input[i];
     }
+    cout << "Before Quick Sort" << endl;
+    displayArray(input, n);
+
+    quickSort(input, 0, n - 1);
+    cout << "\nAfter Quick Sort" << endl;
+    displayArray(input, n);
     cout << endl;
 }
