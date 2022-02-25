@@ -37,3 +37,23 @@ public:
         return ans;
     }
 };
+
+void rightView(TreeNode *root, int level, vector<int> ans){
+    if(root == NULL){
+        return;
+    }
+    if(level == ans.size()){
+        ans.push_back(root->val);
+    }
+    rightView(root->right, level + 1, ans);
+    rightView(root->left, level + 1, ans);
+}
+
+vector<int> rightSideView(TreeNode *root){
+    if(root == NULL){
+        return {};
+    }
+    vector<int> ans;
+    void rightView(root, 0, ans);
+    return ans;
+}
