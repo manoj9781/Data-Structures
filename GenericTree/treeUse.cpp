@@ -37,8 +37,33 @@ void printTree(TreeNode<int> *root)
     }
 }
 
+#include<queue>
+TreeNode<int> *inputLevelWise(){
+    int rootData;
+    cout << "Enter root Data" << endl;
+    cin >> rootData;
+    TreeNode<int> *root = new TreeNode<int>(rootData);
+    queue<TreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0){
+        TreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+        cout << "Enter number of child " << front->data << endl;
+        int n;
+        cin >>n ;
+        for (int i = 0; i < n; i++){
+            cout << "Enter " << i << "th child of " << front->data << endl;
+            int childData;
+            cin >> childData;
+            TreeNode<int> *child = new TreeNode<int>(childData);
+            front->children.push_back(child);
+            pendingNodes.push(front->children[i]);
+        }
+    }
+    return root;
+}
 int main()
 {
-    TreeNode<int> *root = takeInput();
+    TreeNode<int> *root = inputLevelWise();
     printTree(root);
 }
