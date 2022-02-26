@@ -119,6 +119,20 @@ TreeNode<int> *max(TreeNode<int> *root){
     return maximum;
 }
 
+int getHeight(TreeNode<int> *root){
+    if(root == NULL){
+        return 0;
+    }
+    int height = 0;
+    for (int i = 0; i < root->children.size(); i++){
+        int ans = getHeight(root->children[i]);
+        if(ans > height){
+            height = ans;
+        }
+    }
+    return height + 1;
+}
+
 // 1 2 2 3 2 4 5 2 6 7 0 0 0 0 
 int main()
 {
@@ -129,5 +143,6 @@ int main()
     cout << "Sum of Nodes " << sum(root) << endl;
     TreeNode<int> *ans = max(root);
     cout << "Max Node " << ans->data << endl;
+    cout << "Height " << getHeight(root) << endl;
     delete root;
 }
