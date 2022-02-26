@@ -133,6 +133,18 @@ int getHeight(TreeNode<int> *root){
     return height + 1;
 }
 
+void printAtLevelK(TreeNode<int> *root, int k){
+    if(root == NULL){
+        return ;
+    }
+    if(k == 0){
+        cout << root->data<< " ";
+    }
+    for (int i = 0; i < root->children.size(); i++){
+        printAtLevelK(root->children[i], k - 1);
+    }
+}
+
 // 1 2 2 3 2 4 5 2 6 7 0 0 0 0 
 int main()
 {
@@ -144,5 +156,7 @@ int main()
     TreeNode<int> *ans = max(root);
     cout << "Max Node " << ans->data << endl;
     cout << "Height " << getHeight(root) << endl;
+    cout << "Print At level K " << endl;
+    printAtLevelK(root, 1);
     delete root;
 }
