@@ -240,49 +240,49 @@
 //     sub(input, 0, ans);
 // }
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-string findRollOut(string s, vector<int> arr)
-{
-    int n = arr.size();
-    vector<int> brr(n + 1, 0);
-    for (int i = 0; i < n; i++)
-    {
-        brr[0] += 1;
-        brr[arr[i]] -= 1;
-    }
-    for (int i = 1; i < n; i++)
-    {
-        brr[i] += brr[i - 1];
-    }
-    char ch[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    for (int i = 0; i < n; i++)
-    {
-        int x = brr[i] % 26;
-        int y = s[i] - 97;
-        s[i] = ch[(x + y) % 26];
-    }
-    return s;
-}
+// string findRollOut(string s, vector<int> arr)
+// {
+//     int n = arr.size();
+//     vector<int> brr(n + 1, 0);
+//     for (int i = 0; i < n; i++)
+//     {
+//         brr[0] += 1;
+//         brr[arr[i]] -= 1;
+//     }
+//     for (int i = 1; i < n; i++)
+//     {
+//         brr[i] += brr[i - 1];
+//     }
+//     char ch[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x = brr[i] % 26;
+//         int y = s[i] - 97;
+//         s[i] = ch[(x + y) % 26];
+//     }
+//     return s;
+// }
 
-int main()
-{
-    string s = "abz";
+// int main()
+// {
+//     string s = "abz";
 
-    vector<int> roll;
-    int n;
-    cout << "Enter size" << endl;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int a;
-        cin >> a;
-        roll.push_back(a);
-    }
+//     vector<int> roll;
+//     int n;
+//     cout << "Enter size" << endl;
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int a;
+//         cin >> a;
+//         roll.push_back(a);
+//     }
 
-    string res = findRollOut(s, roll);
-    cout << "Res "<< res << endl;
-   
-    return 0;
-}
+//     string res = findRollOut(s, roll);
+//     cout << "Res "<< res << endl;
+
+//     return 0;
+// }
