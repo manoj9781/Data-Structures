@@ -163,8 +163,6 @@ int countLeafNodes(TreeNode<int> *root){
 int main()
 {
     TreeNode<int> *root = inputLevelWise();
-    // printTree(root);
-   // PrintLevelWise(root);
     cout << "Count Nodes " << countNodes(root) << endl;
     cout << "Sum of Nodes " << sum(root) << endl;
     TreeNode<int> *ans = max(root);

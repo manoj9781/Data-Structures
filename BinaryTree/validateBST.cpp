@@ -25,6 +25,18 @@ bool isValidate(TreeNode *root){
     return true;
 }
 
+bool isValid(TreeNode *root, int min = INT_MIN, int max = INT_MAX){
+    if(root == NULL){
+        return true;
+    }
+    if(root -> val < min || root -> val >  max){
+        return false;
+    }
+    bool leftAns = isValid(root->left, min, root->val - 1);
+    bool rightAns = isValid(root->right, root->val, max);
+    return leftAns && rightAns;
+}
+
 int main(){
     cout << "validate" << endl;
 }
