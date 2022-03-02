@@ -63,7 +63,7 @@ BinaryTreeNode<int> *inputLevelWise(){
             front->left = leftChild;
             pendingNodes.push(leftChild);
         }
-        cout << "Enter right Child data of " << front->data << endl;
+        cout << "Enter right Child of " << front->data << endl;
         int rightChildData;
         cin >> rightChildData;
         if(rightChildData != -1){
@@ -75,9 +75,32 @@ BinaryTreeNode<int> *inputLevelWise(){
     return root;
 }
 
+void printLevelWise(BinaryTreeNode<int> *root){
+    if(root == NULL){
+        return;
+    }
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+    while(pendingNodes.size() != 0){
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+        cout << front->data << ":";
+        if(front -> left != NULL){
+            cout << "L" << front->left->data << ",";
+            pendingNodes.push(front->left);
+        }
+        if(front -> right !=  NULL){
+            cout << "R" << front->right->data;
+            pendingNodes.push(front->right);
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
     // BinaryTreeNode<int> *root = input();
     BinaryTreeNode<int> *root = inputLevelWise();
-    printTree(root);
+    printLevelWise(root);
+    // printTree(root);
 }
