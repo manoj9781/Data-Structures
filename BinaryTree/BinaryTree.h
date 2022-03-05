@@ -11,4 +11,8 @@ class BinaryTreeNode{
             left = NULL;
             right = NULL;
         }
+        ~BinaryTreeNode(){
+            delete left;
+            delete right;
+        }
 };
