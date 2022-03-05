@@ -276,14 +276,27 @@ public:
     }
 };
 
+BinaryTreeNode<int> *lowestCommonAcenstor(BinaryTreeNode<int> *root, BinaryTreeNode<int> *p, BinaryTreeNode<int> *q){
+    if(root == NULL){
+        return;
+    }
+    BinaryTreeNode<int> *leftAns = lowestCommonAcenstor(root->left, p, q);
+    BinaryTreeNode<int> *rightAns = lowestCommonAcenstor(root->right, p, q);
+    
+    if(leftAns == NULL){
+        return rightAns;
+    }
+    else if(rightAns == NULL){
+        return leftAns;
+    }
+    else {
+        return root;
+    }
+}
+
 int main()
 {
-    BST b;
-    b.insert(10);
-    b.insert(5);
-    b.insert(7);
-    b.insert(20);
-    b.insert(30);
-    b.insert(25);
-    b.print();
+    BinaryTreeNode<int> *root = inputLevelWise();
+    printLevelWise(root);
+   
 }
