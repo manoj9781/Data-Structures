@@ -1,29 +1,32 @@
-/************************************************************
+#include<iostream>
+#include<climits>
+using namespace std;
 
-    Following is the Binary Tree node structure
-    
-    template <typename T>
-    class TreeNode {
-        public :
-        T data;
-        TreeNode<T> *left;
-        TreeNode<T> *right;
+template <typename T>
+class TreeNode
+{
+public:
+    T data;
+    TreeNode<T> *left;
+    TreeNode<T> *right;
 
-        TreeNode(T data) {
-            this -> data = data;
-            left = NULL;
-            right = NULL;
-        }
+    TreeNode(T data)
+    {
+        this->data = data;
+        left = NULL;
+        right = NULL;
+    }
 
-        ~TreeNode() {
-            if(left)
-                delete left;
-            if(right)
-                delete right;
-        }
+    ~TreeNode()
+    {
+        if (left)
+            delete left;
+        if (right)
+            delete right;
+    }
     };
 
-************************************************************/
+
 
 class BST{
     public:
