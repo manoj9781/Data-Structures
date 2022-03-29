@@ -1,15 +1,6 @@
-/*
-
-Topic - Prism Algorithm
-Author - Manoj Singh Rana
-email - manojsinghrana467@gmail.com
-TIME - 24/08/2021
-
-*/
 
 #include<iostream>
 #include<climits>
-
 using namespace std;
 
 int findMinVertex(int *weight, bool* visited, int n){
