@@ -54,6 +54,8 @@ void kruskal(Edge *input, int n, int E){
     for (int i = 0; i < count; i++){
         cout << output[i].source << " " << output[i].dest << " " << output[i].weight << endl;
     }
+    delete[] output;
+    delete[] parent;
 }
 
 int main(){
@@ -71,4 +73,6 @@ int main(){
         input[i].weight = weight;
     }
     kruskal(input, n, E);
+
+    delete[] input;
 }

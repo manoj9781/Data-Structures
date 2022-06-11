@@ -150,6 +150,56 @@ bool hasPath(int **edges, int n, int src, int dest)
     return hasPath(edges, n, src, dest, visited);
 }
 
+bool detectCycle(int **edges, int n, int s, bool *visited)
+{
+    queue<pair<int, int>> pendingNodes;
+
+    visited[s] = true;
+    pendingNodes.push({s, -1});
+
+    while (pendingNodes.size() != 0)
+    {
+        int currentNode = pendingNodes.front().first;
+        int previous = pendingNodes.front().second;
+
+        pendingNodes.pop();
+
+        for (int i = 0; i < n; i++)
+        {
+            if (edges[i][currentNode] == 1 && !visited[i])
+            {
+                visited[i] = true;
+                pendingNodes.push({i, currentNode});
+            }
+            else if (previous != i)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool detectCycle(int **edges, int n)
+{
+    bool *visited = new bool[n];
+    for (int i = 0; i < n; i++)
+    {
+        visited[i] = false;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+        {
+            if (detectCycle(edges, n, i, visited))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 int main()
 {
     int n;
@@ -176,15 +226,17 @@ int main()
         edges[secondVertex][firstVertex] = 1;
     }
 
+    cout << detectCycle(edges, n) << "\n";
+
     bool *visited = new bool[n];
     for (int i = 0; i < n; i++)
     {
         visited[i] = false;
     }
-    cout << "DFS" << endl;
-    printDFS(edges, n, 0, visited);
-    cout << "BFS" << endl;
-    PrintBFS(edges, n, 0);
+    // cout << "DFS" << endl;
+    // printDFS(edges, n, 0, visited);
+    // cout << "BFS" << endl;
+    // PrintBFS(edges, n, 0);
     delete[] visited;
     for (int i = 0; i < n; i++)
     {
