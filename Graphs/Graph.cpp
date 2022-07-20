@@ -107,6 +107,35 @@ bool isCycle(int n, vector<int> adj[]){
     return false;
 }
 
+bool isCycleDFS(int start, int parent, vector<int> adj[], bool *visited){
+    visited[start] = true;
+    for(auto it : adj[start]){
+        if(!visited[it]){
+            if(isCycleDFS(it, start, adj, visited)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool isCycleDFS(int n, vector<int> adj[]){
+    bool *visited = new bool[n];
+    for (int i = 0; i < n; i++){
+        visited[i] = false;
+    }
+    for (int i = 0; i < n; i++){
+        if(!visited[i]){
+           if(isCycleDFS(i, -1, adj, visited)){
+               return true;
+           }
+        }
+    }
+    delete[] visited;
+    return false;
+}
+
+
 int main()
 {
     int n;
