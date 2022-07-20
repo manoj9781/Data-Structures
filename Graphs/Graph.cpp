@@ -67,6 +67,46 @@ void dfs(int n, vector<int> adj[]){
     delete[] visited;
 }
 
+// Cycle Detection
+
+bool isCycle(int start, vector<int> adj[], bool *visited){
+    queue<pair<int, int>> pendingNodes;
+    pendingNodes.push({start, -1});
+    visited[start] = true;
+    while(pendingNodes.size() != 0){
+        int currentNode = pendingNodes.front().first;
+        int parent = pendingNodes.front().second;
+        pendingNodes.pop();
+
+        for(auto it : adj[currentNode]){
+            if(!visited[it]){
+                pendingNodes.push({it, currentNode});
+                visited[it] = true;
+            }
+            else if(parent != it){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool isCycle(int n, vector<int> adj[]){
+    bool *visited = new bool[n];
+    for (int i = 0; i < n; i++){
+        visited[i] = false;
+    }
+    for (int i = 0; i < n; i++){
+        if(!visited[i]){
+            if(isCycle(i, adj, visited)){
+                return true;
+            }
+        }
+    }
+    delete[] visited;
+    return false;
+}
+
 int main()
 {
     int n;
@@ -80,9 +120,12 @@ int main()
         adj[firstVertex].push_back(secondVertex);
         adj[secondVertex].push_back(firstVertex);
     }
-    cout << "BFS" << endl;
-    bfs(n, adj);
-    cout << "DFS" << endl;
-    dfs(n, adj);
+    bool ans = isCycle(n, adj);
+    if(ans){
+        cout << "Graph has Cycle\n";
+    }
+    else{
+        cout << "NO Cycle\n";
+    }
     return 0;
 }
