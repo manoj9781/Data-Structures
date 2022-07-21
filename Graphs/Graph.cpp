@@ -156,5 +156,7 @@ int main()
     else{
         cout << "NO Cycle\n";
     }
+    cout << "BFS\n";
+    bfs(n, adj);
     return 0;
 }
