@@ -65,11 +65,13 @@ void DFS(int **edges, int n)
     {
         visited[i] = false;
     }
+    int count = 0;
     for (int i = 0; i < n; i++)
     {
         if (!visited[i])
         {
             printDFS(edges, n, i, visited);
+            count++;
         }
     }
 }
