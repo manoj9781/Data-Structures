@@ -421,6 +421,16 @@ Node *reverseIterative(Node *head){
     }
     return prev;
 }
+
+Node *reverseList3(Node * head){
+    if(head == NULL || head -> next == NULL){
+        return head;
+    }
+    Node *smallAns = reverseList3(head->next);
+    Node *temp = head->next;
+    temp->next = head;
+    head->next = NULL;
+}
 int main()
 {
     cout << "Enter value for linked list" << endl;
